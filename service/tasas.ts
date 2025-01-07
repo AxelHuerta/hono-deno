@@ -10,6 +10,13 @@ type Cuenta = {
   twoYears: string;
 };
 
+/**
+ * Fetches and processes data from a remote CSV file, transposing the data and converting it into an array of `Cuenta` objects.
+ *
+ * @returns {Promise<Cuenta[]>} A promise that resolves to an array of `Cuenta` objects.
+ *
+ * @throws Will log an error to the console if the fetch operation fails.
+ */
 export default async function getTasas() {
   const data = await fetch("https://datawrapper.dwcdn.net/AqQwN/5/dataset.csv")
     .then((response) => response.text())
@@ -20,7 +27,7 @@ export default async function getTasas() {
 
   // Transpose the matrix
   const transposedData: string[][] = tabSeparatedData[0].map((_, colIndex) =>
-    tabSeparatedData.map((row) => row[colIndex]),
+    tabSeparatedData.map((row) => row[colIndex])
   );
 
   const cuentas: Cuenta[] = [];
