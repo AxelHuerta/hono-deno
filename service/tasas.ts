@@ -1,5 +1,4 @@
-type Cuenta = {
-  nombre: string;
+type Plazo = {
   permanente: string;
   dia: string;
   semana: string;
@@ -8,6 +7,11 @@ type Cuenta = {
   semestre: string;
   year: string;
   twoYears: string;
+};
+
+type Cuenta = {
+  nombre: string;
+  plazos: Plazo;
 };
 
 /**
@@ -27,7 +31,7 @@ export default async function getTasas() {
 
   // Transpose the matrix
   const transposedData: string[][] = tabSeparatedData[0].map((_, colIndex) =>
-    tabSeparatedData.map((row) => row[colIndex])
+    tabSeparatedData.map((row) => row[colIndex]),
   );
 
   const cuentas: Cuenta[] = [];
@@ -35,14 +39,16 @@ export default async function getTasas() {
   for (let i = 1; i < transposedData.length; i++) {
     const cuenta: Cuenta = {
       nombre: transposedData[i][0],
-      permanente: transposedData[i][1],
-      dia: transposedData[i][2],
-      semana: transposedData[i][3],
-      mes: transposedData[i][4],
-      trimestre: transposedData[i][5],
-      semestre: transposedData[i][6],
-      year: transposedData[i][7],
-      twoYears: transposedData[i][8],
+      plazos: {
+        permanente: transposedData[i][1],
+        dia: transposedData[i][2],
+        semana: transposedData[i][3],
+        mes: transposedData[i][4],
+        trimestre: transposedData[i][5],
+        semestre: transposedData[i][6],
+        year: transposedData[i][7],
+        twoYears: transposedData[i][8],
+      },
     };
 
     cuentas.push(cuenta);
