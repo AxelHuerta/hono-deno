@@ -1,12 +1,12 @@
 type Plazo = {
-  permanente: string;
-  dia: string;
-  semana: string;
-  mes: string;
-  trimestre: string;
-  semestre: string;
-  year: string;
-  twoYears: string;
+  permanente: number;
+  dia: number;
+  semana: number;
+  mes: number;
+  trimestre: number;
+  semestre: number;
+  year: number;
+  twoYears: number;
 };
 
 type Cuenta = {
@@ -31,7 +31,7 @@ export default async function getTasas() {
 
   // Transpose the matrix
   const transposedData: string[][] = tabSeparatedData[0].map((_, colIndex) =>
-    tabSeparatedData.map((row) => row[colIndex]),
+    tabSeparatedData.map((row) => row[colIndex])
   );
 
   const cuentas: Cuenta[] = [];
@@ -40,14 +40,14 @@ export default async function getTasas() {
     const cuenta: Cuenta = {
       nombre: transposedData[i][0],
       plazos: {
-        permanente: transposedData[i][1],
-        dia: transposedData[i][2],
-        semana: transposedData[i][3],
-        mes: transposedData[i][4],
-        trimestre: transposedData[i][5],
-        semestre: transposedData[i][6],
-        year: transposedData[i][7],
-        twoYears: transposedData[i][8],
+        permanente: parseFloat(transposedData[i][1].replace("%", "")),
+        dia: parseFloat(transposedData[i][2].replace("%", "")),
+        semana: parseFloat(transposedData[i][3].replace("%", "")),
+        mes: parseFloat(transposedData[i][4].replace("%", "")),
+        trimestre: parseFloat(transposedData[i][5].replace("%", "")),
+        semestre: parseFloat(transposedData[i][6].replace("%", "")),
+        year: parseFloat(transposedData[i][7].replace("%", "")),
+        twoYears: parseFloat(transposedData[i][8].replace("%", "")),
       },
     };
 
