@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import getTasas from "./service/tasas.ts";
+import getTasas from "./controllers/tasas.controller.ts";
 
 const app = new Hono();
 
