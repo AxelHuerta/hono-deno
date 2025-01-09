@@ -1,5 +1,5 @@
-import getTasasService from "../services/tasas.service.ts";
+import { getTasasService } from "../services/tasas.service.ts";
 
-export default function getTasas() {
+export function getTasas() {
   return getTasasService();
 }
