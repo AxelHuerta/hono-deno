@@ -74,7 +74,7 @@ export default async function getUdisService() {
   );
 
   // TODO: refactor this to use a more robust method to get the udis value
-  udis = await udisElement[1].evaluate((el: any) => el.textContent);
+  udis = await udisElement[0].evaluate((el: any) => el.textContent);
   udis = udis.split("  ")[1];
   udis = parseFloat(udis);
 
